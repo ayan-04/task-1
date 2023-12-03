@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task1</title>
+    <style>
+        body {
+            background-color: rgb(6, 0, 122);
+            font-size: 30px;
+        }
+
+        .custom-box {
+            background-color: rgb(170, 255, 247);
+            height: 740px;
+            width: 1460px;
+            margin-top: 24px;
+            margin-left: 16px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            border: 4px solid grey;
+        }
+
+        .heading-primary {
+            color: rgb(255, 46, 81);
+            font-size: 55px;
+            margin: 25px auto;
+            font-weight: bold;
+        }
+
+        .heading-secondary {
+            color: rgb(255, 46, 81);
+            font-size: 40px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .text-primary, .demo {
+            color: #06007a;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .input-container {
+            color: rgb(0, 0, 0);
+            font-size: 25px;
+            margin: 15px;
+        }
+
+        .input-field {
+            display: inline;
+            width: 240px;
+            padding-top: 4px;
+            padding-bottom: 2px;
+        }
+
+        .custom-button {
+            background-color: rgb(255, 12, 52);
+            border: 3px solid black;
+            font-size: 15px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-box">
+        <div class="input-container heading-primary">Big Storm</div>
+        <div class="input-container heading-secondary">Educational website</div>
+        <div class="input-container text-primary">Sign In and Shine More</div>
+        <div class="input-container">Name:
+            <input type="text" placeholder="Enter your Name..." id="new-name" class="input-field">
+        </div>
+        <div class="input-container">Email:
+            <input type="text" placeholder="Enter your Email address..." id="new-email" class="input-field">
+        </div>
+        <div class="input-container">Password:
+            <input type="password" placeholder="Enter your Password..." id="new-password" class="input-field">
+        </div>
+        <button class="custom-button" onclick="signIn()">Sign in to continue</button>
+        <div id="new-demo" class="demo"></div>
+    </div>
+    <script>
+        function passwordValidate() {
+            let newPassword = document.getElementById('new-password').value;
+            if (newPassword.length < 8) return false;
+            let cap = 0;
+            let small = 0;
+            let dig = 0;
+            let special = 0;
+
+            for (let j of newPassword) {
+                let i = j.charCodeAt();
+                if (i >= 65 && i <= 90) cap++;
+                else if (i >= 97 && i <= 122) small++;
+                else if (i >= 48 && i <= 57) dig++;
+                else if ((i >= 33 && i <= 47) || (i >= 58 && i <= 64) || (i >= 91 && i <= 96) || (i >= 123 && i <= 126)) special++;
+            }
+
+            if (cap > 0 && small > 0 && dig > 0 && special > 0) return true;
+            return false;
+        }
+
+        function signIn() {
+            let newName = document.getElementById('new-name').value;
+            let newDemo = document.getElementById('new-demo');
+
+            if (passwordValidate()) {
+                newDemo.innerHTML = "Sign In successful!!! Welcome " + newName + ". Learn More with Bigstorm";
+            } else {
+                newDemo.innerHTML = "Please enter a valid password (password should be of minimum 8 characters having at least 1 small letter (a-z), 1 capital letter (A-Z), 1 digit (0-9), 1 special character)";
+            }
+        }
+    </script>
+</body>
+</html>

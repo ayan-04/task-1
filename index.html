@@ -90,18 +90,26 @@
             let small = 0;
             let dig = 0;
             let special = 0;
+            function passwordValidate() {
+    let newPassword = document.getElementById('new-password').value;
+    
+    let hasUpperCase = /[A-Z]/.test(newPassword);
+    let hasLowerCase = /[a-z]/.test(newPassword);
+    let hasDigit = /\d/.test(newPassword);
+    let hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(newPassword);
 
-            for (let j of newPassword) {
-                let i = j.charCodeAt();
-                if (i >= 65 && i <= 90) cap++;
-                else if (i >= 97 && i <= 122) small++;
-                else if (i >= 48 && i <= 57) dig++;
-                else if ((i >= 33 && i <= 47) || (i >= 58 && i <= 64) || (i >= 91 && i <= 96) || (i >= 123 && i <= 126)) special++;
-            }
+    
+    if (newPassword.length >= 8 && hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar) {
+        return true;
+    }
+    
+    return false;
+}
 
-            if (cap > 0 && small > 0 && dig > 0 && special > 0) return true;
-            return false;
-        }
+
+           
+}
+
 
         function signIn() {
             let newName = document.getElementById('new-name').value;
